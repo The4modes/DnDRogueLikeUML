@@ -53,36 +53,37 @@ namespace DnDRogueLikeUML.Creatures.Player
             set { actionList = value; }
         }
 
+        private IWieldableItem rightHand;
+        private IWieldableItem leftHand;
+
         public IWieldableItem RightHand 
         {
             get
             {
-                return this.RightHand;
+                return rightHand;
             }
             set
             {
-                if (this.RightHand != null)
+                rightHand = value;
+                if (rightHand == null)
                 {
-                    this.RightHand.UnEquip();
+                    new Melee().Equip(this);
                 }
-
-                this.RightHand = value;
             }
         }
         public IWieldableItem LeftHand 
         {
             get
             {
-                return this.LeftHand;
+                return leftHand;
             }
             set
             {
-                if (this.LeftHand != null)
+                leftHand = value;
+                if (leftHand == null)
                 {
-                    this.LeftHand.UnEquip();
+                    new Melee().Equip(this);
                 }
-
-                this.LeftHand = value;
             }
         }
 
@@ -96,7 +97,23 @@ namespace DnDRogueLikeUML.Creatures.Player
 
         public void DoAction()
         {
-            GenerateAvailableActions()[0].DoAction(new List<ICreature>() { this});
+            List<IAction> availableActions = GenerateAvailableActions();
+            string[] choices = new string[availableActions.Count];
+
+            for (int i = 0; i < availableActions.Count; i++)
+            {
+                choices[i] = availableActions[i].Name;
+            }
+
+            string choice = ConsoleHandler.SingleSelect(choices, "What action do you want to use?");
+
+            foreach (IAction action in availableActions)
+            {
+                if (action.Name == choice)
+                {
+                    action.DoAction(new List<ICreature>() { this });
+                }
+            }
         }
 
         public List<IAction> GenerateAvailableActions()

@@ -1,16 +1,14 @@
-﻿using System;
-using DnDRogueLikeUML.Creatures;
+﻿using DnDRogueLikeUML.Creatures.Player;
+using System.Numerics;
 
 namespace DnDRogueLikeUML.Items.WieldableItems
 {
     interface IWieldableItem : IItem
     {
-        public ICreature Wielder { get; set; }
+        public Player Wielder { get; set; }
 
-        public void Equip(ICreature creature);
+        public void Equip(Player player);
 
         public void UnEquip();
-
-        public IWieldableItem Clone();
     }
 }

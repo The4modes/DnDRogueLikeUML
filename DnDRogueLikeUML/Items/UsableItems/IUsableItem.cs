@@ -6,6 +6,6 @@ namespace DnDRogueLikeUML.Items.UsableItems
 {
     interface IUsableItem : IItem, IAction
     {
-        public IUsableItem Clone();
+
     }
 }
