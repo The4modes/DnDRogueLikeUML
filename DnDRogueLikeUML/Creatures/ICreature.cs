@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using DnDRogueLikeUML.Action;
+using DnDRogueLikeUML.Items;
+using DnDRogueLikeUML.Items.UsableItems;
+using DnDRogueLikeUML.Items.WieldableItems;
 
-namespace DnDRogueLikeUML
+namespace DnDRogueLikeUML.Creatures
 {
     interface ICreature
     {
@@ -27,8 +31,7 @@ namespace DnDRogueLikeUML
         public List<IStackableItem> StackableItemsList { get; set; }
         public List<IWieldableItem> WieldableItemsList { get; set; }
 
-        public IWieldableItem RightHand { get; set; }
-        public IWieldableItem LeftHand { get; set; }
+        public List<IAction> ActionList { get; set; }
 
         public void DoAction();
 

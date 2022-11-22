@@ -1,0 +1,7 @@
+﻿namespace DnDRogueLikeUML
+{
+    class Battle
+    {
+
+    }
+}

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using DnDRogueLikeUML.Action;
 
-namespace DnDRogueLikeUML
+namespace DnDRogueLikeUML.Items.UsableItems
 {
     interface IUsableItem : IItem, IAction
     {

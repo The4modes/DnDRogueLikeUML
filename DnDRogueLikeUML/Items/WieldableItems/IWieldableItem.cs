@@ -1,4 +1,7 @@
-﻿namespace DnDRogueLikeUML
+﻿using System;
+using DnDRogueLikeUML.Creatures;
+
+namespace DnDRogueLikeUML.Items.WieldableItems
 {
     interface IWieldableItem : IItem
     {

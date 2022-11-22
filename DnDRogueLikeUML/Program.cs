@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDRogueLikeUML.Creatures.Player;
+using System;
 using System.Net;
 
 namespace DnDRogueLikeUML
@@ -8,6 +9,10 @@ namespace DnDRogueLikeUML
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            Player player = Player.GenerateClass();
+
+            player.DoAction();
         }
     }
 }

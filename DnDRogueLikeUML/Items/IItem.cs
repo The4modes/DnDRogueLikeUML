@@ -1,4 +1,4 @@
-﻿namespace DnDRogueLikeUML
+﻿namespace DnDRogueLikeUML.Items
 {
     interface IItem
     {

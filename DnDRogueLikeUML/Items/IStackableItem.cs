@@ -1,6 +1,6 @@
 ﻿using System.Transactions;
 
-namespace DnDRogueLikeUML
+namespace DnDRogueLikeUML.Items
 {
 
     interface IStackableItem : IItem
