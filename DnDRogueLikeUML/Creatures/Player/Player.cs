@@ -27,10 +27,11 @@ namespace DnDRogueLikeUML.Creatures.Player
 
         public Type CurrentLocation { get; set; }
 
-        public List<IUsableItem> usableItemsList = new List<IUsableItem>();
-        public List<IStackableItem> stackableItemsList = new List<IStackableItem>();
-        public List<IWieldableItem> wieldableItemsList = new List<IWieldableItem>();
-        public List<IAction> actionList = new List<IAction>();
+        private List<IUsableItem> usableItemsList = new List<IUsableItem>();
+        private List<IStackableItem> stackableItemsList = new List<IStackableItem>();
+        private List<IWieldableItem> wieldableItemsList = new List<IWieldableItem>();
+        private List<IAction> actionList = new List<IAction>();
+        private List<IAction> bonusActionList = new List<IAction>();
 
         public List<IUsableItem> UsableItemsList 
         {
@@ -52,6 +53,11 @@ namespace DnDRogueLikeUML.Creatures.Player
             get { return actionList; }
             set { actionList = value; }
         }
+        public List<IAction> BonusActionList
+        {
+            get { return bonusActionList; }
+            set { bonusActionList= value; }
+        }
 
         private IWieldableItem rightHand;
         private IWieldableItem leftHand;
@@ -65,6 +71,7 @@ namespace DnDRogueLikeUML.Creatures.Player
             set
             {
                 rightHand = value;
+
                 if (rightHand == null)
                 {
                     new Melee().Equip(this);
@@ -80,6 +87,7 @@ namespace DnDRogueLikeUML.Creatures.Player
             set
             {
                 leftHand = value;
+
                 if (leftHand == null)
                 {
                     new Melee().Equip(this);
@@ -93,6 +101,26 @@ namespace DnDRogueLikeUML.Creatures.Player
 
             Console.WriteLine("Sike, you get a wizard");
             return new Wizard();
+        }
+
+        public void EquipItem()
+        {
+            string[] wieldableItemNames = new string[WieldableItemsList.Count];
+
+            for (int i = 0; i < WieldableItemsList.Count; i++)
+            {
+                wieldableItemNames[i] = WieldableItemsList[i].Name;
+            }
+
+            string choice = ConsoleHandler.SingleSelect(wieldableItemNames, "What item do you want to equip?");
+
+            for (int i = 0; i < WieldableItemsList.Count; i++)
+            {
+                if (wieldableItemNames[i] == wieldableItemsList[i].Name)
+                {
+                    wieldableItemsList[i].Equip(this);
+                }
+            }
         }
 
         public void DoAction()

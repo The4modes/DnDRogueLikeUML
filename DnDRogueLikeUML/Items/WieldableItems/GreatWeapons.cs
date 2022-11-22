@@ -4,6 +4,7 @@ using DnDRogueLikeUML.Items.UsableItems;
 using DnDRogueLikeUML.Creatures.Player;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using System.Numerics;
 
 namespace DnDRogueLikeUML.Items.WieldableItems
 {
@@ -21,8 +22,14 @@ namespace DnDRogueLikeUML.Items.WieldableItems
         {
             Wielder = player;
             Wielder.ActionList.Add(this);
+            player.RightHand.UnEquip();
+            if (player.LeftHand != null)
+            {
+                player.LeftHand.UnEquip();
+            }
             player.RightHand = this;
             player.LeftHand = this;
+            player.WieldableItemsList.Remove(this);
 
             Console.WriteLine($"{Name} was equiped on {player.Name}");
         }
@@ -34,9 +41,8 @@ namespace DnDRogueLikeUML.Items.WieldableItems
             Wielder.RightHand = null;
             Wielder.LeftHand = null;
             Console.WriteLine($"{Name} was unequiped from {Wielder.Name}");
+            Wielder.WieldableItemsList.Add(this);
             Wielder = null;
-
-            
         }
 
         public abstract void DoAction(List<ICreature> targets);

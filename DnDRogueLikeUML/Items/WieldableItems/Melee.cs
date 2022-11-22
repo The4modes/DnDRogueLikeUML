@@ -23,7 +23,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
         public Melee()
         {
             AvailableLocations = new List<Type>() { typeof(Battle) };
-            DamageDie = 12;
+            DamageDie = 4;
         }
 
         public void DoAction(List<ICreature> targets)
@@ -35,43 +35,21 @@ namespace DnDRogueLikeUML.Items.WieldableItems
         public void Equip(Player player)
         {
             Wielder = player;
-            Wielder.ActionList.Add(this);
-
+            
             if (player.RightHand == null)
             {
                 Name = "Right Hand";
-                Console.WriteLine($"{Name} was equiped on {player.Name} right hand");
+                Wielder.ActionList.Add(this);
                 player.RightHand = this;
+                equippedHand = "Right";
             }
             else if (player.LeftHand == null)
             {
                 Name = "Left Hand";
-                Console.WriteLine($"{Name} was equiped on {player.Name} left hand");
+                Wielder.BonusActionList.Add(this);
                 player.LeftHand = this;
+                equippedHand = "Left";
             }
-            else
-            {
-                string choice = ConsoleHandler.SingleSelect(new string[] { "[grey]Right Hand[/]", "[grey]Left Hand[/]" }, "What hand do you want to use bare fist?");
-
-                switch (choice)
-                {
-                    case "[grey]Right Hand[/]":
-                        player.RightHand = this;
-                        Name = "Right Hand";
-                        Console.WriteLine($"{Name} was equiped on {player.Name} right hand");
-                        equippedHand = "Right";
-                        break;
-                    case "[grey]Left Hand[/]":
-                        player.LeftHand = this;
-                        Name = "Left Hand";
-                        Console.WriteLine($"{Name} was equiped on {player.Name} left hand");
-                        equippedHand = "Left";
-                        break;
-                    default:
-                        throw new NotImplementedException("No hand selected, something went wrong");
-                }
-            }
-
             
         }
 
@@ -80,12 +58,10 @@ namespace DnDRogueLikeUML.Items.WieldableItems
             switch (equippedHand)
             {
                 case "Right":
-                    Wielder.RightHand = null;
-                    Console.WriteLine($"{Name} was unequiped on {Wielder.Name} right hand");
+                    Wielder.ActionList.Remove(this);
                     break;
                 case "Left":
-                    Wielder.LeftHand = null;
-                    Console.WriteLine($"{Name} was unequiped on {Wielder.Name} left hand");
+                    Wielder.BonusActionList.Remove(this);
                     break;
                 default:
                     throw new NotImplementedException("Something went wrong with unequiping Hands");

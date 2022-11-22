@@ -33,6 +33,8 @@ namespace DnDRogueLikeUML.Creatures
 
         public List<IAction> ActionList { get; set; }
 
+        public List<IAction> BonusActionList { get; set; }
+
         public void DoAction();
 
         public List<IAction> GenerateAvailableActions();

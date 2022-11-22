@@ -26,10 +26,17 @@ namespace DnDRogueLikeUML.Creatures.Enemies
 
         public Type CurrentLocation { get; set; }
 
+        private List<IUsableItem> usableItemsList = new List<IUsableItem>();
+        private List<IStackableItem> stackableItemsList = new List<IStackableItem>();
+        private List<IWieldableItem> wieldableItemsList = new List<IWieldableItem>();
+        private List<IAction> actionList = new List<IAction>();
+        private List<IAction> bonusActionList = new List<IAction>();
+
         public List<IUsableItem> UsableItemsList { get; set; }
         public List<IStackableItem> StackableItemsList { get; set; }
         public List<IWieldableItem> WieldableItemsList { get; set; }
         public List<IAction> ActionList { get; set; }
+        public List<IAction> BonusActionList { get; set; }
 
         public void DoAction()
         {

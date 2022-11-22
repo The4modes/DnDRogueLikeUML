@@ -13,11 +13,16 @@ namespace DnDRogueLikeUML
 
             Player player = Player.GenerateClass();
 
-            new GreateAxe().Equip(player);
+            player.WieldableItemsList.Add( new GreatLongSword() );
+            player.WieldableItemsList.Add( new GreatAxe() );
+
+            player.EquipItem();
 
             player.DoAction();
 
             player.RightHand.UnEquip();
+
+            Console.WriteLine(player.RightHand);
 
             player.DoAction();
         }
