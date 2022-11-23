@@ -16,8 +16,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 
         public override void DoAction(List<ICreature> targets)
         {
-            Console.WriteLine("Slapidislap");
-            throw new NotImplementedException();
+            Console.WriteLine("Slapidislap - you slapped yourself");
         }
 
         public override void Equip(HumanoidCreature creature)

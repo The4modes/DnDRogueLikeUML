@@ -14,6 +14,8 @@ namespace DnDRogueLikeUML.Creatures.Player
             Health = MaxHealth;
             Name = "Commoner";
 
+            new Scimitar().Equip(this);
+
             CurrentLocation = typeof(Battle);
 
             

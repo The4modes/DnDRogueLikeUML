@@ -11,7 +11,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
     {
         public Dagger()
         {
-            Name = "Scimitar";
+            Name = "Dagger";
             AvailableLocations = new List<Type>() { typeof(Battle) };
             DamageDie = 4;
         }

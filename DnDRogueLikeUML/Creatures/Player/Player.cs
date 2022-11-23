@@ -103,7 +103,7 @@ namespace DnDRogueLikeUML.Creatures.Player
         public static Player GenerateClass()
         {
             string classChoice = ConsoleHandler.SingleSelect(new[]
-            { "[grey]Wizard[/]", "[grey]Barbarian[/]", "[grey]Commoner[/]", "[grey]Dumbo[/]" },
+            { "[grey]Wizard[/]", "[grey]Barbarian[/]", "[grey]Commoner[/]" },
                 "What class do you want to play?");
 
             switch (classChoice)
