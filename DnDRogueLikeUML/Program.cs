@@ -9,22 +9,17 @@ namespace DnDRogueLikeUML
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
             Player player = Player.GenerateClass();
 
-            player.WieldableItemsList.Add( new GreatLongSword() );
-            player.WieldableItemsList.Add( new GreatAxe() );
+            new Forest(player);
+            new Forest(player);
 
-            player.EquipItem();
+            if (player.Level >= 2)
+            {
+                new Desert(player);
+            }
 
-            player.DoAction();
-
-            player.RightHand.UnEquip();
-
-            Console.WriteLine(player.RightHand);
-
-            player.DoAction();
+            Console.WriteLine($"{player.Name} survived... for now");
         }
     }
 }

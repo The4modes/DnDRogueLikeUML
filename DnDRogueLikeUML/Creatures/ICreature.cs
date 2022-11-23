@@ -29,13 +29,12 @@ namespace DnDRogueLikeUML.Creatures
         public List<IUsableItem> UsableItemsList { get; set; }
 
         public List<IStackableItem> StackableItemsList { get; set; }
-        public List<IWieldableItem> WieldableItemsList { get; set; }
 
         public List<IAction> ActionList { get; set; }
 
         public List<IAction> BonusActionList { get; set; }
 
-        public void DoAction();
+        public void DoAction(List<ICreature> creatures);
 
         public List<IAction> GenerateAvailableActions();
 

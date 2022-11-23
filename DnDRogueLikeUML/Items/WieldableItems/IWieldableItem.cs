@@ -5,9 +5,9 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 {
     interface IWieldableItem : IItem
     {
-        public Player Wielder { get; set; }
+        public HumanoidCreature Wielder { get; set; }
 
-        public void Equip(Player player);
+        public void Equip(HumanoidCreature player);
 
         public void UnEquip();
     }

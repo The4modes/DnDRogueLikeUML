@@ -1,4 +1,5 @@
-﻿using DnDRogueLikeUML.Action;
+﻿using System.Collections.Generic;
+using DnDRogueLikeUML.Action;
 using DnDRogueLikeUML.Items.WieldableItems;
 
 namespace DnDRogueLikeUML.Creatures.Player
@@ -9,7 +10,8 @@ namespace DnDRogueLikeUML.Creatures.Player
         {
             Name = "Wizard";
 
-            new Melee().Equip(this);
+            new Fist().Equip(this);
+            new Fist().Equip(this);
 
             HitDie = 6;
             MaxHealth = HitDie;

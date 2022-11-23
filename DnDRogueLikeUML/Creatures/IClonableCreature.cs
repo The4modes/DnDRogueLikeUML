@@ -8,8 +8,8 @@ namespace DnDRogueLikeUML
     {
         public string Name { get; set; }
         public double ChallengeRating { get; set; }
-        public List<Type> SpawnLocation { get; set; }
+        public List<Type> SpawnLocations { get; set; }
 
-        public Enemy Clone(int numCount);
+        public IEnemy Clone(int numCount);
     }
 }

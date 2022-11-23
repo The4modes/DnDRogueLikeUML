@@ -9,4 +9,16 @@
     <PackageReference Include="Spectre.Console" Version="0.45.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Creatures\Player\PlayableClasses\" />
+    <None Remove="Items\WieldableItems\DualWielding\" />
+    <None Remove="Items\WieldableItems\SingleWielding\" />
+    <None Remove="Locations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Creatures\Player\PlayableClasses\" />
+    <Folder Include="Items\WieldableItems\DualWielding\" />
+    <Folder Include="Items\WieldableItems\SingleWielding\" />
+    <Folder Include="Locations\" />
+  </ItemGroup>
 </Project>

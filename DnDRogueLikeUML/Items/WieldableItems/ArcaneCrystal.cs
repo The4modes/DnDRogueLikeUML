@@ -5,7 +5,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 {
     class ArcaneCrystal : IWieldableItem
     {
-        public Player Wielder { get; set; }
+        public HumanoidCreature Wielder { get; set; }
         public string Name { get; set; }
         public string Rarity { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public string Description { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -15,7 +15,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
             Name = "Arcane Crystal";
         }
 
-        public void Equip(Player player)
+        public void Equip(HumanoidCreature player)
         {
             Wielder = player;
             player.LeftHand.UnEquip();

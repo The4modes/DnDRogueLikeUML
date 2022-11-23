@@ -2,128 +2,64 @@
 using System.Collections.Generic;
 using System.Reflection;
 using DnDRogueLikeUML.Action;
-using DnDRogueLikeUML.Items;
-using DnDRogueLikeUML.Items.UsableItems;
-using DnDRogueLikeUML.Items.WieldableItems;
 
 namespace DnDRogueLikeUML.Creatures.Player
 {
-    abstract class Player : ICreature
+    abstract class Player : HumanoidCreature
     {
-        public string Name { get; set; }
-        public int Health { get; set; }
-        public int MaxHealth { get; set; }
-        public int HitDie { get; set; }
-        public int Level { get; set; }
-        public int XP { get; set; }
-        public int ArmorClass { get; set; }
+        private int health;
+        private int maxHealth;
+        private int xp = 0;
 
-        public int Strenght { get; set; }
-        public int Dexterity { get; set; }
-        public int Constitution { get; set; }
-        public int Intelligence { get; set; }
-        public int Wisdom { get; set; }
-        public int Charisma { get; set; }
-
-        public Type CurrentLocation { get; set; }
-
-        private List<IUsableItem> usableItemsList = new List<IUsableItem>();
-        private List<IStackableItem> stackableItemsList = new List<IStackableItem>();
-        private List<IWieldableItem> wieldableItemsList = new List<IWieldableItem>();
-        private List<IAction> actionList = new List<IAction>();
-        private List<IAction> bonusActionList = new List<IAction>();
-
-        public List<IUsableItem> UsableItemsList 
-        {
-            get { return usableItemsList; }
-            set { usableItemsList = value; }
-        }  
-        public List<IStackableItem> StackableItemsList
-        {
-            get{ return stackableItemsList; }
-            set { stackableItemsList = value; }
-        }
-        public List<IWieldableItem> WieldableItemsList
-        {
-            get { return wieldableItemsList; }
-            set { wieldableItemsList = value; }
-        }
-        public List<IAction> ActionList
-        {
-            get { return actionList; }
-            set { actionList = value; }
-        }
-        public List<IAction> BonusActionList
-        {
-            get { return bonusActionList; }
-            set { bonusActionList= value; }
-        }
-
-        private IWieldableItem rightHand;
-        private IWieldableItem leftHand;
-
-        public IWieldableItem RightHand 
+        public override int Health
         {
             get
             {
-                return rightHand;
+                return health;
             }
             set
             {
-                rightHand = value;
-
-                if (rightHand == null)
+                if (value <= MaxHealth)
                 {
-                    new Melee().Equip(this);
+                    health = value;
                 }
+                else
+                {
+                    health = MaxHealth;
+                }
+
+                if (health <= 0)
+                {
+                    Environment.Exit(0);
+                }
+
             }
         }
-        public IWieldableItem LeftHand 
+
+        public override int XP
         {
             get
             {
-                return leftHand;
+                return xp;
             }
             set
             {
-                leftHand = value;
-
-                if (leftHand == null)
+                xp = value;
+                if (levelThresholds.Count > 0)
                 {
-                    new Melee().Equip(this);
+                    LevelUpCheck();
                 }
             }
         }
 
-        public static Player GenerateClass()
-        {
-            Console.WriteLine("Choose class:");
+        private List<int> levelThresholds = new List<int>() { 300, 900, 2700, 6500, 14000, 23000 };
 
-            Console.WriteLine("Sike, you get a wizard");
-            return new Wizard();
+        protected Player()
+        {
+            Level = 1;
         }
 
-        public void EquipItem()
-        {
-            string[] wieldableItemNames = new string[WieldableItemsList.Count];
-
-            for (int i = 0; i < WieldableItemsList.Count; i++)
-            {
-                wieldableItemNames[i] = WieldableItemsList[i].Name;
-            }
-
-            string choice = ConsoleHandler.SingleSelect(wieldableItemNames, "What item do you want to equip?");
-
-            for (int i = 0; i < WieldableItemsList.Count; i++)
-            {
-                if (wieldableItemNames[i] == wieldableItemsList[i].Name)
-                {
-                    wieldableItemsList[i].Equip(this);
-                }
-            }
-        }
-
-        public void DoAction()
+        public override void DoAction(List<ICreature> creatures)
         {
             List<IAction> availableActions = GenerateAvailableActions();
             string[] choices = new string[availableActions.Count];
@@ -139,23 +75,69 @@ namespace DnDRogueLikeUML.Creatures.Player
             {
                 if (action.Name == choice)
                 {
-                    action.DoAction(new List<ICreature>() { this });
+                    action.DoAction(creatures);
                 }
             }
         }
 
-        public List<IAction> GenerateAvailableActions()
+        public void ChooseEquipment()
         {
-            List<IAction> actions = new List<IAction>();
+            string[] wieldableItemNames = new string[WieldableItemsList.Count];
 
-            foreach (IAction action in ActionList)
+            for (int i = 0; i < WieldableItemsList.Count; i++)
             {
-                if (action.AvailableLocations.Contains(CurrentLocation))
+                wieldableItemNames[i] = WieldableItemsList[i].Name;
+            }
+
+            string choice = ConsoleHandler.SingleSelect(wieldableItemNames, "What item do you want to equip?");
+
+            for (int i = 0; i < WieldableItemsList.Count; i++)
+            {
+                if (wieldableItemNames[i] == WieldableItemsList[i].Name)
                 {
-                    actions.Add(action);
+                    WieldableItemsList[i].Equip(this);
                 }
             }
-            return actions;
+        }
+
+        public static Player GenerateClass()
+        {
+            string classChoice = ConsoleHandler.SingleSelect(new[]
+            { "[grey]Wizard[/]", "[grey]Barbarian[/]", "[grey]Commoner[/]", "[grey]Dumbo[/]" },
+                "What class do you want to play?");
+
+            switch (classChoice)
+            {
+                case "[grey]Wizard[/]":
+                    return new Wizard();
+                case "[grey]Barbarian[/]":
+                    return new Barbarian();
+                default:
+                    return new Commoner();
+            }
+        }
+
+        private void LevelUp()
+        {
+            Random random = new Random();
+
+            Level++;
+            int roll = random.Next(1, HitDie + 1);
+            MaxHealth += roll;
+            Health = MaxHealth;
+            Console.WriteLine($"{Name} just leveled up to level: {Level}");
+            Console.WriteLine($"{Name} new max health is: {MaxHealth}\nHealth has also been restored.");
+
+        }
+
+        private void LevelUpCheck()
+        {
+            Console.WriteLine(XP);
+            if (XP >= levelThresholds[0])
+            {
+                LevelUp();
+                levelThresholds.RemoveAt(0);
+            }
         }
     }
 }

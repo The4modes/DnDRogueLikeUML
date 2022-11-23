@@ -1,59 +1,47 @@
-﻿using DnDRogueLikeUML.Action;
-using DnDRogueLikeUML.Creatures;
+﻿using DnDRogueLikeUML.Creatures;
 using DnDRogueLikeUML.Creatures.Player;
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace DnDRogueLikeUML.Items.WieldableItems
 {
-    class Melee : IWieldableItem, IAction
+    class Fist : MeleeWeapon
     {
-        public Player Wielder { get; set; }
-        public string Name { get; set; }
-        public string Rarity { get; set; }
-        public string Description { get; set; }
-        public string Type { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public ICreature User { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Type> AvailableLocations { get; set; }
-
-        private int DamageDie;
-
-        private string equippedHand;
-
-        public Melee()
+        public Fist()
         {
             AvailableLocations = new List<Type>() { typeof(Battle) };
             DamageDie = 4;
         }
 
-        public void DoAction(List<ICreature> targets)
+        public override void DoAction(List<ICreature> targets)
         {
             Console.WriteLine("Slapidislap");
             throw new NotImplementedException();
         }
 
-        public void Equip(Player player)
+        public override void Equip(HumanoidCreature creature)
         {
-            Wielder = player;
+            Wielder = creature;
             
-            if (player.RightHand == null)
+            if (creature.RightHand == null)
             {
                 Name = "Right Hand";
                 Wielder.ActionList.Add(this);
-                player.RightHand = this;
+                creature.RightHand = this;
                 equippedHand = "Right";
             }
-            else if (player.LeftHand == null)
+            else if (creature.LeftHand == null)
             {
                 Name = "Left Hand";
                 Wielder.BonusActionList.Add(this);
-                player.LeftHand = this;
+                creature.LeftHand = this;
                 equippedHand = "Left";
             }
             
         }
 
-        public void UnEquip()
+        public override void UnEquip()
         {
             switch (equippedHand)
             {
