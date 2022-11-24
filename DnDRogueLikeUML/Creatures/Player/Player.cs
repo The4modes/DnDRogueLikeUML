@@ -4,6 +4,8 @@ using System.Reflection;
 using DnDRogueLikeUML.Action;
 using DnDRogueLikeUML.Items.UsableItems;
 using DnDRogueLikeUML.Items;
+using System.Linq;
+using System.Numerics;
 
 namespace DnDRogueLikeUML.Creatures.Player
 {
@@ -101,6 +103,43 @@ namespace DnDRogueLikeUML.Creatures.Player
                     WieldableItemsList[i].Equip(this);
                 }
             }
+        }
+
+        protected void ChooseRolledStats()
+        {
+            List<int> roll1 = GenerateStats();
+            List<int> roll2 = GenerateStats();
+            string[] roll1String = new string[roll1.Count + 1];
+            string[] roll2String = new string[roll2.Count + 1];
+            roll1String[0] = "";
+            roll2String[0] = "";
+
+            for (int i = 0; i < roll1String.Length - 1; i++)
+            {
+                roll1String[i + 1] = roll1[i].ToString();
+                roll2String[i + 1] = roll2[i].ToString();
+            }
+            Console.WriteLine("Roll 1:");
+            ConsoleHandler.DisplayStats(roll1String);
+
+            Console.WriteLine();
+
+            Console.WriteLine("Roll 2");
+            ConsoleHandler.DisplayStats(roll2String);
+        }
+
+        private List<int> GenerateStats()
+        {
+            List<int> rolledStats = new List<int>();
+
+            Random random = new Random();
+
+            for (int i = 0; i < 6; i++)
+            {
+                rolledStats.Add((from roll in Enumerable.Range(0, 4) select random.Next(1, 7)).OrderBy(x => x).ToList().GetRange(1, 3).Sum());
+            }
+
+            return rolledStats;
         }
 
         public static Player GenerateClass()

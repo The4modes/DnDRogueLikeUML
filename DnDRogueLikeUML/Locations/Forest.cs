@@ -18,7 +18,7 @@ namespace DnDRogueLikeUML
 
         public Forest(Player player)
         {
-            NumberOfEncounters = random.Next(1, 5);
+            NumberOfEncounters = random.Next(2, 6);
             player.CurrentLocation = typeof(Forest);
             for (int i = 0; i < NumberOfEncounters; i++)
             {
@@ -30,7 +30,7 @@ namespace DnDRogueLikeUML
         {
             Console.WriteLine($"{player.Name} walks in to a Forest");
 
-            if (random.NextDouble() < 0.5)
+            if (random.NextDouble() < 0.75)
             {
                 new Battle(player);
             }

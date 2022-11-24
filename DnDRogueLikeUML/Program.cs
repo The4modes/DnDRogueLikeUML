@@ -13,7 +13,6 @@ namespace DnDRogueLikeUML
 
             new Forest(player);
             new Forest(player);
-            new Forest(player);
 
             if (player.Level >= 2)
             {

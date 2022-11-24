@@ -17,6 +17,8 @@ namespace DnDRogueLikeUML.Creatures.Player
             ActionList.Add(new Firebolt(this));
             ActionList.Add(new BurningHands(this));
 
+            ChooseRolledStats();
+
             new ArcaneCrystal().Equip(this);
             new WoodenWand().Equip(this);
         }

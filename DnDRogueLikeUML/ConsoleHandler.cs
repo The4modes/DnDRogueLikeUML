@@ -1,11 +1,46 @@
 ﻿using System.Collections.Generic;
 using System;
 using Spectre.Console;
+using System.Threading;
 
 namespace DnDRogueLikeUML
 {
     class ConsoleHandler
     {
+        public static void DisplayStats(string[] stats)
+        {
+            Table table = new Table().Centered();
+
+            AnsiConsole.Live(table)
+                .Start(ctx =>
+                {
+                    table.AddColumn("Stats:");
+                    ctx.Refresh();
+                    Thread.Sleep(1000);
+
+                    table.AddColumn("Str");
+                    ctx.Refresh();
+
+                    table.AddColumn("Dex");
+                    ctx.Refresh();
+
+                    table.AddColumn("Con");
+                    ctx.Refresh();
+
+                    table.AddColumn("Int");
+                    ctx.Refresh();
+
+                    table.AddColumn("Wis");
+                    ctx.Refresh();
+
+                    table.AddColumn("Cha");
+                    ctx.Refresh();
+
+                    table.AddRow(stats);
+                    ctx.Refresh();
+                });
+        }
+
         public static string SingleSelect(string[] choices, string title)
         {
             Random random = new Random();
