@@ -6,9 +6,6 @@ namespace DnDRogueLikeUML.Creatures.Player
     {
         public Commoner()
         {
-            new Fist().Equip(this);
-            new Fist().Equip(this);
-
             HitDie = 8;
             MaxHealth = HitDie;
             Health = MaxHealth;

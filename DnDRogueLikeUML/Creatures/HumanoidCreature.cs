@@ -16,12 +16,11 @@ namespace DnDRogueLikeUML.Creatures.Player
             }
             set
             {
-                rightHand = value;
-
-                if (rightHand == null)
+                if(RightHand is Fist && value.GetType() != typeof(Fist))
                 {
-                    new Fist().Equip(this);
+                    RightHand.UnEquip();
                 }
+                rightHand = value;
             }
         }
         public IWieldableItem LeftHand
@@ -32,12 +31,11 @@ namespace DnDRogueLikeUML.Creatures.Player
             }
             set
             {
-                leftHand = value;
-
-                if (leftHand == null)
+                if (LeftHand is Fist && value.GetType() != typeof(Fist))
                 {
-                    new Fist().Equip(this);
+                    LeftHand.UnEquip();
                 }
+                leftHand = value;
             }
         }
 

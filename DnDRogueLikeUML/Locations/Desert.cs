@@ -1,5 +1,7 @@
 ﻿using DnDRogueLikeUML.Creatures;
 using DnDRogueLikeUML.Creatures.Player;
+using DnDRogueLikeUML.Items;
+using DnDRogueLikeUML.Items.UsableItems;
 using System;
 using System.Collections.Generic;
 
@@ -50,7 +52,7 @@ namespace DnDRogueLikeUML
             {
                 case "Explore - [grey]chance to find loot[/]":
                     Console.WriteLine("You have found a potion!");
-                    //ItemManager.AddItemToInventory(player, new PotionOfHealing(player));
+                    ItemManager.AddItemToInventory(player, new PotionOfHealing(player));
                     //ItemManager.DisplayInventory(player);
                     break;
                 case "Rest - [grey]restore some health[/]":

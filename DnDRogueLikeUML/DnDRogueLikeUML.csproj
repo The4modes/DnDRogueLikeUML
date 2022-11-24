@@ -14,11 +14,13 @@
     <None Remove="Items\WieldableItems\DualWielding\" />
     <None Remove="Items\WieldableItems\SingleWielding\" />
     <None Remove="Locations\" />
+    <None Remove="Items\WieldableItems\SingleWieldingNonUsable\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Creatures\Player\PlayableClasses\" />
     <Folder Include="Items\WieldableItems\DualWielding\" />
     <Folder Include="Items\WieldableItems\SingleWielding\" />
     <Folder Include="Locations\" />
+    <Folder Include="Items\WieldableItems\SingleWieldingNonUsable\" />
   </ItemGroup>
 </Project>

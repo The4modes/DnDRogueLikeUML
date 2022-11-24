@@ -26,7 +26,7 @@ namespace DnDRogueLikeUML.Creatures
 
         public Type CurrentLocation { get; set; }
 
-        public List<IUsableItem> UsableItemsList { get; set; }
+        public List<IAction> UsableItemsList { get; set; }
 
         public List<IStackableItem> StackableItemsList { get; set; }
 

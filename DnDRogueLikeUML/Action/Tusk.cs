@@ -10,6 +10,7 @@ namespace DnDRogueLikeUML.Creatures.Enemies
         public string Name { get; set; }
         public string Type { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public ICreature User { get; set; }
+        public bool IsMagical { get; set; } = false;
         public List<Type> AvailableLocations { get; set; } = new List<Type>();
 
         public Tusk(ICreature creature)

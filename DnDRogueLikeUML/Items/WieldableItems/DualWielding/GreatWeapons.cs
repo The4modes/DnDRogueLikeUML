@@ -36,8 +36,14 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 
             Wielder.RightHand = null;
             Wielder.LeftHand = null;
-            Console.WriteLine($"{Name} was unequiped from {Wielder.Name}");
+
+            new Fist().Equip(Wielder);
+            new Fist().Equip(Wielder);
+
             Wielder.WieldableItemsList.Add(this);
+
+            Console.WriteLine($"{Name} was unequiped from {Wielder.Name}");
+
             Wielder = null;
         }
     }

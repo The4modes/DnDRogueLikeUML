@@ -6,9 +6,6 @@ namespace DnDRogueLikeUML.Creatures.Player
     {
         public Barbarian()
         {
-            new Fist().Equip(this);
-            new Fist().Equip(this);
-            
             HitDie = 12;
             MaxHealth = HitDie;
             Health = MaxHealth;

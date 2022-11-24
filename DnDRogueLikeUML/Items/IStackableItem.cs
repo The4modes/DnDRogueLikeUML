@@ -8,6 +8,5 @@ namespace DnDRogueLikeUML.Items
         public int ItemStack { get; set; }
 
         public void AddToStack(int amount);
-        public IStackableItem Clone();
     }
 }

@@ -26,15 +26,15 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 
                 if (handToEquip == "Right Hand - Main Action")
                 {
-                    Wielder.ActionList.Add(this);
                     Wielder.RightHand.UnEquip();
+                    Wielder.ActionList.Add(this);
                     Wielder.RightHand = this;
                     equippedHand = "Right";
                 }
                 else if (handToEquip == "Left Hand - Bonus Action")
                 {
-                    Wielder.BonusActionList.Add(this);
                     Wielder.LeftHand.UnEquip();
+                    Wielder.BonusActionList.Add(this);
                     Wielder.LeftHand = this;
                     equippedHand = "Left";
                 }
@@ -50,11 +50,13 @@ namespace DnDRogueLikeUML.Items.WieldableItems
             {
                 Wielder.ActionList.Remove(this);
                 Wielder.RightHand = null;
+                new Fist().Equip(Wielder);
             }
             else if(equippedHand == "Left")
             {
                 Wielder.BonusActionList.Remove(this);
                 Wielder.LeftHand = null;
+                new Fist().Equip(Wielder);
             }
             
             Console.WriteLine($"{Name} was unequiped from {Wielder.Name}");

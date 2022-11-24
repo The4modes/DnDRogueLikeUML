@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 using DnDRogueLikeUML.Action;
+using DnDRogueLikeUML.Items.UsableItems;
+using DnDRogueLikeUML.Items;
 
 namespace DnDRogueLikeUML.Creatures.Player
 {
@@ -57,6 +59,7 @@ namespace DnDRogueLikeUML.Creatures.Player
         protected Player()
         {
             Level = 1;
+            ItemManager.AddItemToInventory(this, new PotionOfHealing(this));
         }
 
         public override void DoAction(List<ICreature> creatures)

@@ -2,6 +2,9 @@
 using DnDRogueLikeUML.Creatures.Player;
 using System;
 using System.Collections.Generic;
+using DnDRogueLikeUML.Items;
+using DnDRogueLikeUML.Items.UsableItems;
+using DnDRogueLikeUML.Items.WieldableItems;
 
 namespace DnDRogueLikeUML
 {
@@ -27,7 +30,7 @@ namespace DnDRogueLikeUML
         {
             Console.WriteLine($"{player.Name} walks in to a Forest");
 
-            if (random.NextDouble() < 0.75)
+            if (random.NextDouble() < 0.5)
             {
                 new Battle(player);
             }
@@ -50,7 +53,7 @@ namespace DnDRogueLikeUML
             {
                 case "Explore - [grey]chance to find loot[/]":
                     Console.WriteLine("You have found a potion!");
-                    //ItemManager.AddItemToInventory(player, new PotionOfHealing(player));
+                    new PotionOfHealing(player).AddToInventory(player);
                     //ItemManager.DisplayInventory(player);
                     break;
                 case "Rest - [grey]restore some health[/]":

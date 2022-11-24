@@ -19,5 +19,11 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 
         public abstract void Equip(HumanoidCreature creature);
         public abstract void UnEquip();
+
+        public virtual void AddToInventory(HumanoidCreature creature)
+        {
+            creature.WieldableItemsList.Add(this);
+        }
+
     }
 }

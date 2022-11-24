@@ -8,6 +8,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
 {
     class Fist : MeleeWeapon
     {
+
         public Fist()
         {
             AvailableLocations = new List<Type>() { typeof(Battle) };
@@ -37,7 +38,6 @@ namespace DnDRogueLikeUML.Items.WieldableItems
                 creature.LeftHand = this;
                 equippedHand = "Left";
             }
-            
         }
 
         public override void UnEquip()
