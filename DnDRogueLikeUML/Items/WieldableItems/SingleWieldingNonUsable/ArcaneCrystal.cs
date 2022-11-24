@@ -19,6 +19,8 @@ namespace DnDRogueLikeUML.Items.WieldableItems
             player.RightHand = this;
             EquipedHand = "right hand";
 
+            Wielder.Intelligence += 1;
+
             Console.WriteLine($"{Name} was equiped on {Wielder.Name} {EquipedHand}");
         }
 

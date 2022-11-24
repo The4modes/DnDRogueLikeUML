@@ -12,14 +12,13 @@ namespace DnDRogueLikeUML.Creatures.Player
 
         public override int Health { get; set; }
         public double ChallengeRating { get; set; }
-        public List<Type> SpawnLocations { get; set; } = new List<Type>();
+        public List<Type> SpawnLocations { get; set; } = new List<Type>() { typeof(Forest)};
 
         public Boar()
         {
             Random random = new Random();
             Health = random.Next(1, 9) + random.Next(1, 9) + 4;
             ActionList = new List<IAction>() { new Tusk(this) };
-            SpawnLocations.Add(typeof(Forest));
             CurrentLocation = typeof(Battle);
             ChallengeRating = 0.25d;
             XP = 100;

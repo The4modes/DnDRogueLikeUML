@@ -4,6 +4,7 @@ using DnDRogueLikeUML.Creatures;
 using DnDRogueLikeUML.Creatures.Player;
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DnDRogueLikeUML.Items.WieldableItems
 {
@@ -20,13 +21,32 @@ namespace DnDRogueLikeUML.Items.WieldableItems
         {
             Random random = new Random();
 
+            int bonus = 0;
+
+            if (Wielder.StrMod >= Wielder.DexMod)
+            {
+                if (Wielder.StrMod > 0)
+                {
+                    bonus = Wielder.StrMod;
+                }
+            }
+            else
+            {
+                if (Wielder.DexMod > 0)
+                {
+                    bonus = Wielder.DexMod;
+                }
+            }
+
             if (targets[0] is Player)
             {
-                int damage = random.Next(1, DamageDie + 1);
+                int damage;
+
+                damage = random.Next(1, DamageDie + 1) + bonus;
+
                 Console.WriteLine($"The {Wielder.Name} uses the move {Name} and deals {damage}");
                 targets[0].Health -= damage;
             }
-
             else
             {
                 string[] targetNames = new string[targets.Count];
@@ -42,7 +62,7 @@ namespace DnDRogueLikeUML.Items.WieldableItems
                 {
                     if (targetNames[i] == targetChoice)
                     {
-                        int damage = random.Next(1, DamageDie + 1);
+                        int damage = random.Next(1, DamageDie + 1) + bonus;
                         targets[i].Health -= damage;
 
                         Console.WriteLine($"{Wielder.Name} stabs at {targets[i].Name} with a {Name} for {damage} damage!");

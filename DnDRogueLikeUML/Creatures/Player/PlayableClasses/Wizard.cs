@@ -10,14 +10,16 @@ namespace DnDRogueLikeUML.Creatures.Player
         {
             Name = "Wizard";
 
+            DisplayableStats = ChooseRolledStats();
+
             HitDie = 6;
             MaxHealth = HitDie;
             Health = MaxHealth;
+
             CurrentLocation = typeof(Battle);
+
             ActionList.Add(new Firebolt(this));
             ActionList.Add(new BurningHands(this));
-
-            ChooseRolledStats();
 
             new ArcaneCrystal().Equip(this);
             new WoodenWand().Equip(this);

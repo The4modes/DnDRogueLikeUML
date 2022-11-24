@@ -24,6 +24,13 @@ namespace DnDRogueLikeUML.Creatures
         public int Wisdom { get; set; }
         public int Charisma { get; set; }
 
+        public int StrMod { get;}
+        public int DexMod { get;}
+        public int ConMod { get;}
+        public int IntMod { get;}
+        public int WisMod { get;}
+        public int ChaMod { get;}
+
         public Type CurrentLocation { get; set; }
 
         public List<IAction> UsableItemsList { get; set; }

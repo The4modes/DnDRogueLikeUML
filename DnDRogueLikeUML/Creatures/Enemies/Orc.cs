@@ -11,7 +11,7 @@ namespace DnDRogueLikeUML.Creatures.Player
     {
         public override int Health { get; set; }
         public double ChallengeRating { get; set; }
-        public List<Type> SpawnLocations { get; set; } = new List<Type>();
+        public List<Type> SpawnLocations { get; set; } = new List<Type>() { typeof(Forest) , typeof(Desert)};
 
         public Orc()
         {
@@ -20,7 +20,7 @@ namespace DnDRogueLikeUML.Creatures.Player
 
             new GreatAxe().Equip(this);
             CurrentLocation = typeof(Battle);
-            SpawnLocations.Add(typeof(Forest));
+
             ChallengeRating = 0.5d;
             XP = 200;
             Name = "Orc";

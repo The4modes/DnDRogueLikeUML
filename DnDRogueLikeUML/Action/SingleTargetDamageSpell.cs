@@ -28,11 +28,22 @@ namespace DnDRogueLikeUML.Action
 
                 string targetChoice = ConsoleHandler.SingleSelect(targetNames, "What creature do you want to target with Firebolt?");
 
+
+
                 for (int i = 0; i < targetNames.Length; i++)
                 {
                     if (targetNames[i] == targetChoice)
                     {
-                        int damage = 0;
+                        
+
+                        int bonus = 0;
+
+                        if (User.IntMod > 0)
+                        {
+                            bonus = User.IntMod;
+                        }
+
+                        int damage = bonus;
 
                         for (int j = 0; j <= User.Level / 5; j++)
                         {

@@ -20,13 +20,19 @@ namespace DnDRogueLikeUML.Items.WieldableItems
         {
             Random random = new Random();
 
+            int bonus = 0;
+
+            if (Wielder.StrMod > 0)
+            {
+                bonus = Wielder.StrMod;
+            }
+
             if (targets[0] is Player)
             {
-                int damage = random.Next(1, DamageDie + 1);
+                int damage = random.Next(1, DamageDie + 1)  + bonus;
                 Console.WriteLine($"The {Wielder.Name} uses the move {Name} and deals {damage}");
                 targets[0].Health -= damage;
             }
-
             else
             {
                 string[] targetNames = new string[targets.Count];
@@ -42,8 +48,8 @@ namespace DnDRogueLikeUML.Items.WieldableItems
                 {
                     if (targetNames[i] == targetChoice)
                     {
-                        int damage = random.Next(1, DamageDie + 1);
-                        targets[i].Health -= damage;
+                        int damage = random.Next(1, DamageDie + 1) + bonus;
+                        targets[i].Health -= damage; 
 
                         Console.WriteLine($"{Wielder.Name} swing its GreatAxe at {targets[i].Name} for {damage} damage!");
                     }

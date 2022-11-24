@@ -4,11 +4,19 @@ using System;
 
 namespace DnDRogueLikeUML.Action
 {
-    abstract class MultiTargetDamageSpell : SingleTargetDamageSpell
+    abstract class MultiTargetDamageSpell : ISpell
     {
+        protected int DamageDie { get; set; }
+        public int LevelRequirement { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Name { get; set; }
+        public string Type { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsMagical { get; set; } = true;
+        public ICreature User { get; set; }
+        public List<Type> AvailableLocations { get; set; } = new List<Type>();
+
         abstract protected int MaxTargets { get; set; }
 
-        public override void DoAction(List<ICreature> targets)
+        public virtual void DoAction(List<ICreature> targets)
         {
             Random random = new Random();
 
@@ -26,7 +34,14 @@ namespace DnDRogueLikeUML.Action
                 targetChoice = ConsoleHandler.MultiSelect(targetNames, $"What creatures do you want to target with [red]{Name}[/]?\nYou can choose up to 3 creatures.");
             }
 
-            int damage = random.Next(1, DamageDie + 1);
+            int bonus = 0;
+
+            if (User.IntMod > 0)
+            {
+                bonus = User.IntMod;
+            }
+
+            int damage = random.Next(1, DamageDie + 1) + bonus;
 
             for (int j = 0; j < targetChoice.Count; j++)
             {

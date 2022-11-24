@@ -6,16 +6,17 @@ namespace DnDRogueLikeUML.Creatures.Player
     {
         public Commoner()
         {
+            Name = "Commoner";
+
+            DisplayableStats = ChooseRolledStats();
+
             HitDie = 8;
             MaxHealth = HitDie;
             Health = MaxHealth;
-            Name = "Commoner";
-
-            new Scimitar().Equip(this);
-
+            
             CurrentLocation = typeof(Battle);
 
-            
+            new Scimitar().Equip(this);
         }
     }
 }

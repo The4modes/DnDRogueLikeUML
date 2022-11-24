@@ -11,9 +11,8 @@ namespace DnDRogueLikeUML.Creatures.Player
 {
     abstract class Player : HumanoidCreature
     {
-        private int health;
-        private int maxHealth;
-        private int xp = 0;
+        
+        public string[] DisplayableStats { get; set; }
 
         public override int Health
         {
@@ -105,7 +104,7 @@ namespace DnDRogueLikeUML.Creatures.Player
             }
         }
 
-        protected void ChooseRolledStats()
+        protected string[] ChooseRolledStats()
         {
             List<int> roll1 = GenerateStats();
             List<int> roll2 = GenerateStats();
@@ -126,6 +125,30 @@ namespace DnDRogueLikeUML.Creatures.Player
 
             Console.WriteLine("Roll 2");
             ConsoleHandler.DisplayStats(roll2String);
+
+            string choice = ConsoleHandler.SingleSelect(new string[] { "[grey]Roll 1[/]", "[grey]Roll 2[/]", }, "Which stats do you want to use?");
+
+            switch (choice)
+            {
+                case "[grey]Roll 1[/]":
+                    ApplyStats(roll1);
+                    return roll1String;
+                case "[grey]Roll 2[/]":
+                    ApplyStats(roll2);
+                    return roll2String;
+                default:
+                    throw new NotImplementedException("No choice was made... somehow");
+            }
+        }
+
+        private void ApplyStats(List<int> stats)
+        {
+            Strenght = stats[0];
+            Dexterity = stats[1];
+            Constitution = stats[2];
+            Intelligence = stats[3];
+            Wisdom = stats[4];
+            Charisma = stats[5];
         }
 
         private List<int> GenerateStats()

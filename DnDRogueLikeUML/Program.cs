@@ -11,6 +11,9 @@ namespace DnDRogueLikeUML
         {
             Player player = Player.GenerateClass();
 
+            Console.WriteLine(player.Health);
+
+            new Forest(player);
             new Forest(player);
             new Forest(player);
 

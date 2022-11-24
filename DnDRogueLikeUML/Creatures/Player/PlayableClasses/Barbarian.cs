@@ -6,12 +6,16 @@ namespace DnDRogueLikeUML.Creatures.Player
     {
         public Barbarian()
         {
+            Name = "Barbarian";
+
+            DisplayableStats = ChooseRolledStats();
+
             HitDie = 12;
             MaxHealth = HitDie;
             Health = MaxHealth;
-            Name = "Barbarian";
-
+            
             CurrentLocation = typeof(Battle);
+
             new GreatAxe().Equip(this);
         }
 

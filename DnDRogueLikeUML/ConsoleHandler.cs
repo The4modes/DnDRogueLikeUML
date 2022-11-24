@@ -16,7 +16,6 @@ namespace DnDRogueLikeUML
                 {
                     table.AddColumn("Stats:");
                     ctx.Refresh();
-                    Thread.Sleep(1000);
 
                     table.AddColumn("Str");
                     ctx.Refresh();

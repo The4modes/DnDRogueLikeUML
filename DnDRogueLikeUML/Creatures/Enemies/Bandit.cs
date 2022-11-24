@@ -10,7 +10,7 @@ namespace DnDRogueLikeUML.Creatures.Player
     {
         public override int Health { get; set; }
         public double ChallengeRating { get; set; }
-        public List<Type> SpawnLocations { get; set; } = new List<Type>();
+        public List<Type> SpawnLocations { get; set; } = new List<Type>() { typeof(Forest), typeof(Desert) };
 
         public Bandit()
         {
@@ -19,7 +19,7 @@ namespace DnDRogueLikeUML.Creatures.Player
 
             new Scimitar().Equip(this);
             CurrentLocation = typeof(Battle);
-            SpawnLocations.Add(typeof(Forest));
+
             ChallengeRating = 1d / 8d;
             XP = 50;
             Name = "Bandit";
