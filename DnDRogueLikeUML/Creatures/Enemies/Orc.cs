@@ -22,7 +22,7 @@ namespace DnDRogueLikeUML.Creatures.Player
             CurrentLocation = typeof(Battle);
 
             ChallengeRating = 0.5d;
-            XP = 200;
+            XP = 600;
             Name = "Orc";
         }
 

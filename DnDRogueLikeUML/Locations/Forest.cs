@@ -65,7 +65,15 @@ namespace DnDRogueLikeUML
                     throw new NotImplementedException("Something went wrong with the choice");
             }
 
-            //player.DoAction(new List<ICreature>() { player });
+            string moveChoice = ConsoleHandler.SingleSelect(new string[] 
+            { "[grey]Use a action[/]", "[grey]Continue forward[/]" },
+            "What do you want to do next?");
+
+            if (moveChoice == "[grey]Use a action[/]")
+            {
+                player.DoAction(new List<ICreature> {player});
+            }
+
         }
     }
 }

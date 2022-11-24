@@ -17,7 +17,6 @@
     <None Remove="Items\WieldableItems\SingleWieldingNonUsable\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Creatures\Player\PlayableClasses\" />
     <Folder Include="Items\WieldableItems\DualWielding\" />
     <Folder Include="Items\WieldableItems\SingleWielding\" />
     <Folder Include="Locations\" />

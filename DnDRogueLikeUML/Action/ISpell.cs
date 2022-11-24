@@ -7,5 +7,7 @@ namespace DnDRogueLikeUML.Action
     {
         public int LevelRequirement { get; set; }
 
+        public string ActionType { get; set; }
+
     }
 }

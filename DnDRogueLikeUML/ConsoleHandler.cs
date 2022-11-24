@@ -13,7 +13,7 @@ namespace DnDRogueLikeUML
 
             AnsiConsole.Live(table)
                 .Start(ctx =>
-                {
+                { 
                     table.AddColumn("Stats:");
                     ctx.Refresh();
 

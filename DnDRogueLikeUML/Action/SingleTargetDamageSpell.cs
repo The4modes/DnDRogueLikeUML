@@ -13,6 +13,7 @@ namespace DnDRogueLikeUML.Action
         public bool IsMagical { get; set; } = true;
         public ICreature User { get; set; }
         public List<Type> AvailableLocations { get; set; } = new List<Type>();
+        public virtual string ActionType { get; set; } = "Main";
 
         public virtual void DoAction(List<ICreature> targets)
         {
@@ -26,7 +27,7 @@ namespace DnDRogueLikeUML.Action
                     targetNames[i] = targets[i].Name;
                 }
 
-                string targetChoice = ConsoleHandler.SingleSelect(targetNames, "What creature do you want to target with Firebolt?");
+                string targetChoice = ConsoleHandler.SingleSelect(targetNames, $"What creature do you want to target with {Name}?");
 
 
 

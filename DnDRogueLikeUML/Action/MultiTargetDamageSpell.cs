@@ -15,6 +15,7 @@ namespace DnDRogueLikeUML.Action
         public List<Type> AvailableLocations { get; set; } = new List<Type>();
 
         abstract protected int MaxTargets { get; set; }
+        public virtual string ActionType { get; set; } = "Main";
 
         public virtual void DoAction(List<ICreature> targets)
         {

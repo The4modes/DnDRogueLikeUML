@@ -21,7 +21,7 @@ namespace DnDRogueLikeUML.Creatures.Player
             ActionList = new List<IAction>() { new Tusk(this) };
             CurrentLocation = typeof(Battle);
             ChallengeRating = 0.25d;
-            XP = 100;
+            XP = 300;
             Name = "Boar";
         }
 

@@ -66,12 +66,14 @@ namespace DnDRogueLikeUML.Creatures.Player
         public override void DoAction(List<ICreature> creatures)
         {
             List<IAction> availableActions = GenerateAvailableActions();
-            string[] choices = new string[availableActions.Count];
+            string[] choices = new string[availableActions.Count + 1];
 
             for (int i = 0; i < availableActions.Count; i++)
             {
                 choices[i] = availableActions[i].Name;
             }
+
+            choices[choices.Length - 1] = "Skip action";
 
             string choice = ConsoleHandler.SingleSelect(choices, "What action do you want to use?");
 
@@ -182,13 +184,12 @@ namespace DnDRogueLikeUML.Creatures.Player
             }
         }
 
-        private void LevelUp()
+        protected virtual void LevelUp()
         {
             Random random = new Random();
 
             Level++;
-            int roll = random.Next(1, HitDie + 1);
-            MaxHealth += roll;
+            MaxHealth += random.Next(1, HitDie + 1);
             Health = MaxHealth;
             Console.WriteLine($"{Name} just leveled up to level: {Level}");
             Console.WriteLine($"{Name} new max health is: {MaxHealth}\nHealth has also been restored.");

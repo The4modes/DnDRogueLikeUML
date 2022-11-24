@@ -19,7 +19,7 @@ namespace DnDRogueLikeUML.Creatures.Player
 
         public string Name { get; set; }
         public virtual int Health { get; set; }
-        public virtual int MaxHealth { get => maxHealth; set => maxHealth = ConMod * Level + value; }
+        public virtual int MaxHealth { get => maxHealth; set => maxHealth = ConMod + value; }
         public int HitDie { get; set; }
         public int Level { get; set; } = 1;
         public virtual int XP { get; set; }

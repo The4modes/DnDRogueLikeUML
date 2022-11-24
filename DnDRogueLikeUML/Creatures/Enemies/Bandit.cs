@@ -21,7 +21,7 @@ namespace DnDRogueLikeUML.Creatures.Player
             CurrentLocation = typeof(Battle);
 
             ChallengeRating = 1d / 8d;
-            XP = 50;
+            XP = 150;
             Name = "Bandit";
         }
 
