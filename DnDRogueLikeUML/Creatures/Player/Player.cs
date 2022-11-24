@@ -11,7 +11,6 @@ namespace DnDRogueLikeUML.Creatures.Player
 {
     abstract class Player : HumanoidCreature
     {
-        
         public string[] DisplayableStats { get; set; }
 
         public override int Health
