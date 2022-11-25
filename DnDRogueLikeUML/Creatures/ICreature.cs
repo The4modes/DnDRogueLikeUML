@@ -4,6 +4,7 @@ using DnDRogueLikeUML.Action;
 using DnDRogueLikeUML.Items;
 using DnDRogueLikeUML.Items.UsableItems;
 using DnDRogueLikeUML.Items.WieldableItems;
+using DnDRogueLikeUML.Modifiers;
 
 namespace DnDRogueLikeUML.Creatures
 {
@@ -40,6 +41,8 @@ namespace DnDRogueLikeUML.Creatures
         public List<IAction> ActionList { get; set; }
 
         public List<IAction> BonusActionList { get; set; }
+
+        public List<ITurnModifier> TurnModifiers { get; set; }
 
         public void DoAction(List<ICreature> creatures);
 

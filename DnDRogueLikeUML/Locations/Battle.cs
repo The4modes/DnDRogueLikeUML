@@ -90,9 +90,39 @@ namespace DnDRogueLikeUML
 
             while (player.Health > 0 && enemies.Count > 0)
             {
-                player.DoAction(enemies);
-
                 List<ICreature> deadEnemies = new List<ICreature>();
+
+                foreach (var mod in player.TurnModifiers)
+                {
+                    mod.Turn();
+                }
+
+                foreach (ICreature enemy in enemies)
+                {
+                    foreach (var mod in enemy.TurnModifiers)
+                    {
+                        mod.Turn();
+                    }
+                }
+
+                foreach (ICreature creature in enemies)
+                {
+                    if (creature.Health <= 0)
+                    {
+                        deadEnemies.Add(creature);
+                    }
+                }
+
+                foreach (ICreature item in deadEnemies)
+                {
+                    player.XP += item.XP;
+                    enemies.Remove(item);
+                }
+
+                if (enemies.Count > 0)
+                {
+                    player.DoAction(enemies);
+                }
 
                 foreach (ICreature creature in enemies)
                 {

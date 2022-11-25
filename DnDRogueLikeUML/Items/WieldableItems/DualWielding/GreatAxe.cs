@@ -4,6 +4,7 @@ using DnDRogueLikeUML.Creatures.Player;
 using System.Collections.Generic;
 using DnDRogueLikeUML.Action;
 using DnDRogueLikeUML.Creatures.Enemies;
+using DnDRogueLikeUML.Modifiers;
 
 namespace DnDRogueLikeUML.Items.WieldableItems
 {
@@ -53,6 +54,8 @@ namespace DnDRogueLikeUML.Items.WieldableItems
                         targets[i].Health -= damage;
 
                         Console.WriteLine($"{Wielder.Name} swing its GreatAxe at {targets[i].Name} for {damage} damage!");
+
+                        Poison.Apply(targets[i]);
                     }
                 }
 
