@@ -3,7 +3,7 @@ using DnDRogueLikeUML.Items.WieldableItems;
 using System;
 using System.Net;
 
-// Not even close to done
+// A DnD dungeon crawler. The game will eventually have fighting, exploring and shopping (to change weapons, armor, consumables and enchantments). More spells will be added, as well as a bunch of new mobs.  
 
 namespace DnDRogueLikeUML
 {
@@ -19,6 +19,8 @@ namespace DnDRogueLikeUML
             new Forest(player);
             new Forest(player);
             new Forest(player);
+
+
 
             if (player.Level >= 2)
             {
