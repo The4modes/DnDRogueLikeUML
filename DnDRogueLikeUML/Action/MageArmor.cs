@@ -6,12 +6,12 @@ namespace DnDRogueLikeUML.Action
 {
     class MageArmor : ISpell
     {
-        public int LevelRequirement { get; set; } = 2;
-        public string ActionType { get; set; } = "Ritual";
-        public string Name { get; set; } = "Mage Armor";
-        public string Type { get; set; } = "Buff";
-        public ICreature User { get; set; }
-        public bool IsMagical { get; set; } = true;
+        public int LevelRequirement { get; private set; } = 2;
+        public string ActionType { get; private set; } = "Ritual";
+        public string Name { get; private set; } = "Mage Armor";
+        public string Type { get; private set; } = "Buff";
+        public ICreature User { get; private set; }
+        public bool IsMagical { get; private set; } = true;
         public List<Type> AvailableLocations { get; set; } = new List<Type>();
 
         public MageArmor(ICreature creature)

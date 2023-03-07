@@ -20,7 +20,6 @@ namespace DnDRogueLikeUML.Items.WieldableItems
             creature.LeftHand.UnEquip();
             creature.RightHand = this;
             creature.LeftHand = this;
-            
 
             if (!(creature is IEnemy))
             {

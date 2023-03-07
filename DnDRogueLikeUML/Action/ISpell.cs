@@ -5,9 +5,9 @@ namespace DnDRogueLikeUML.Action
 
     interface ISpell : IAction
     {
-        public int LevelRequirement { get; set; }
+        public int LevelRequirement { get; }
 
-        public string ActionType { get; set; }
+        public string ActionType { get; }
 
     }
 }

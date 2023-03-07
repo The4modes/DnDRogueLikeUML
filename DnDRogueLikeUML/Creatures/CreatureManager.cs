@@ -6,7 +6,6 @@ namespace DnDRogueLikeUML
 {
     class CreatureManager
     {
-
         private List<IClonableCreature> GetAllCreatures = new List<IClonableCreature>() { new Boar(), new Orc(), new Bandit() };
 
         public List<IClonableCreature> GetAvailableCreatures(Type location)

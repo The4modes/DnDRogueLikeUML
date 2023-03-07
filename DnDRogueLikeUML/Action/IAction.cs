@@ -6,11 +6,11 @@ namespace DnDRogueLikeUML.Action
 {
     interface IAction
     {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public ICreature User { get; set; }
-        public bool IsMagical { get; set; }
-        public List<Type> AvailableLocations { get; set; }
+        public string Name { get; }
+        public string Type { get; }
+        public ICreature User { get; }
+        public bool IsMagical { get; }
+        public List<Type> AvailableLocations { get; }
 
         public void DoAction(List<ICreature> targets);
     }
