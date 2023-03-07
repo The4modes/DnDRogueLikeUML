@@ -3,6 +3,8 @@ using DnDRogueLikeUML.Items.WieldableItems;
 using System;
 using System.Net;
 
+// Not even close to done
+
 namespace DnDRogueLikeUML
 {
 
